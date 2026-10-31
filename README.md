@@ -20,7 +20,7 @@ Open http://localhost:3000. `npm run build` creates a static export in `out/`. `
 - Partner enquiry and account previews with native form validation. Forms never send data.
 - Membership selector, cancellation information accordion, mobile menu and accessible native dialogs.
 
-No backend, authentication, payment processing or real reservations are implemented. Legal, contact, careers and social dialogs explicitly identify information that is pending launch. Testimonials, prices, ratings, distances and availability are illustrative.
+No backend, authentication, payment processing or real reservations are implemented. Dedicated company and policy pages explain the current preview scope. Careers and social dialogs identify information pending launch. Testimonials, prices, ratings, distances and availability are illustrative.
 
 ## Main files
 
@@ -34,3 +34,15 @@ No backend, authentication, payment processing or real reservations are implemen
 ## Assets
 
 Original supplied files remain in `assests/`. Full logo and symbol were extracted from the provided HTML brand kit. Photography from Unsplash is bundled locally; source IDs: `photo-1507842217343-583bb7270b66` (library), `photo-1534438327276-14e5300c3a48` (gym), `photo-1497366754035-f200968a6e72` (co-working), `photo-1434030216411-0b793f4b4173` (study), `photo-1497366811353-6870744d04b2` (partner). Fonts are licensed under the SIL Open Font License; upstream: Google Fonts / DM Sans and Manrope.
+
+## Company and policy routes
+
+- `/about-us`
+- `/contact-us`
+- `/privacy-policy`
+- `/terms-and-conditions`
+- `/cancellation-and-refund`
+
+Each route is statically rendered with its own title, description, canonical URL and social metadata. `/sitemap.xml` and `/robots.txt` cover the homepage and all five routes. The private Sites preview requires sign-in; search engine indexing requires a publicly accessible deployment. The default canonical domain is `https://zerotham.vercel.app`. Set `NEXT_PUBLIC_SITE_URL` before building for a different production domain.
+
+The contact address is `contact@zerotham.com`. The contact form opens an email draft in the visitor’s email app; it does not send or save messages on the website. Policies describe the current preview and need updating when real accounts, bookings, payments or additional data collection are introduced.
