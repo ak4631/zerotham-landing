@@ -14,7 +14,7 @@ export function pageMetadata(title: string, description: string, path: string): 
   return {
     title: `${title} | ZEROTHAM`, description,
     alternates: { canonical: path },
-    openGraph: { title: `${title} | ZEROTHAM`, description, url: path, type: 'website', images: ['/images/logo.png'] },
+    openGraph: { title: `${title} | ZEROTHAM`, description, url: path, siteName: 'ZEROTHAM', locale: 'en_IN', type: 'website', images: [{ url: '/images/logo.png', alt: 'ZEROTHAM — A Better Way to Grow' }] },
     twitter: { card: 'summary', title: `${title} | ZEROTHAM`, description, images: ['/images/logo.png'] },
   };
 }
