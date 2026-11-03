@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 
-export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://zerotham.vercel.app').replace(/\/$/, '');
+export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://zerotham.com').replace(/\/$/, '');
 export const contactEmail = 'contact@zerotham.com';
 export const informationLinks = [
   { label: 'About Us', href: '/about-us', kind: 'company' },
