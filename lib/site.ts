@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 
 export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://zerotham.com').replace(/\/$/, '');
 export const contactEmail = 'contact@zerotham.com';
+
+export function categoryHref(category: string): string {
+  return `/?category=${encodeURIComponent(category)}#discover`;
+}
 export const informationLinks = [
   { label: 'About Us', href: '/about-us', kind: 'company' },
   { label: 'Contact Us', href: '/contact-us', kind: 'company' },

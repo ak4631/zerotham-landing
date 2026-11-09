@@ -2,14 +2,23 @@ import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, Mail } from 'lucide-react';
 import SiteChrome from './SiteChrome';
-import { contactEmail, informationLinks } from '@/lib/site';
+import { contactEmail, informationLinks, siteUrl } from '@/lib/site';
 
 export type ContentSection = { id: string; title: string; paragraphs?: string[]; bullets?: string[]; content?: ReactNode };
 
 type Props = { title: string; eyebrow: string; description: string; path: string; sections?: ContentSection[]; children?: ReactNode; policy?: boolean };
 
 export default function InformationPage({ title, eyebrow, description, path, sections = [], children, policy = false }: Props) {
+  const breadcrumbs = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: `${siteUrl}/` },
+      { '@type': 'ListItem', position: 2, name: title, item: `${siteUrl}${path}` },
+    ],
+  };
   return <SiteChrome><main id="main" className="information-page">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs).replace(/</g, '\\u003c') }} />
     <div className="container">
       <nav className="breadcrumbs" aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><span aria-current="page">{title}</span></nav>
       <header className="information-hero"><span className="eyebrow">{eyebrow}</span><h1>{title}</h1><p>{description}</p>{policy && <span className="policy-date">Last updated: 1 November 2026 · Current website preview</span>}</header>

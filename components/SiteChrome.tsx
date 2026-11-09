@@ -11,7 +11,6 @@ export default function SiteChrome({ children }: { children: ReactNode }) {
     <Navbar onAuth={mode => setModal({ type: 'auth', title: mode })} onPartner={() => setModal({ type: 'partner' })} />
     {children}
     <Footer
-      onCategory={category => window.location.assign(`/?category=${encodeURIComponent(category)}#discover`)}
       onInfo={title => setModal({ type: 'info', title })}
     />
     {modal?.type === 'auth' && <AuthDialog mode={modal.title || 'Login'} onClose={close} />}

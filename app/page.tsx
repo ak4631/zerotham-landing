@@ -1,5 +1,11 @@
 import Marketplace from '@/components/Marketplace';
-import { siteUrl } from '@/lib/site';
+import { pageMetadata, siteUrl } from '@/lib/site';
+
+export const metadata = pageMetadata(
+  'Libraries, Gyms & Co-working Spaces Near You',
+  'Explore libraries, gyms, co-working spaces and exam preparation hubs with ZEROTHAM. Compare sample spaces in Pune, facilities and flexible pass options.',
+  '/',
+);
 
 const websiteSchema = {
   '@context': 'https://schema.org',

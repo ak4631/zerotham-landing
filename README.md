@@ -1,6 +1,6 @@
 # ZEROTHAM — A Better Way to Grow
 
-A responsive marketplace landing page built with Next.js App Router, TypeScript, Tailwind CSS, Lucide and Framer Motion. The supplied brand kit is the source of the exact colours and logo assets.
+A responsive marketplace landing page built with Next.js App Router, TypeScript, Tailwind CSS and Lucide. The supplied brand kit is the source of the exact colours and logo assets.
 
 ## Run locally
 
@@ -26,7 +26,8 @@ No backend, authentication, payment processing or real reservations are implemen
 
 - `components/Marketplace.tsx`: page composition and reusable marketplace components.
 - `app/globals.css`: brand tokens, layouts, states and responsive styling.
-- `app/layout.tsx`: metadata, social preview and supplied symbol favicon.
+- `app/layout.tsx`: shared indexing settings, verification, font preloads and symbol favicon.
+- `app/page.tsx`: homepage search and social metadata, plus WebSite structured data.
 - `public/images/`: extracted brand artwork and bundled photography.
 - `public/fonts/`: self-hosted DM Sans and Manrope fonts.
 - `.openai/hosting.json`: private Sites preview configuration.
@@ -51,8 +52,12 @@ The contact address is `contact@zerotham.com`. The contact form opens an email d
 
 ## SEO and Google Search Console
 
-- `app/layout.tsx` adds the Google verification meta tag, index/follow directives and default metadata. `lib/site.ts` supplies page-specific canonical URLs, Open Graph and Twitter cards.
+- `app/layout.tsx` adds the Google verification meta tag and index/follow directives. Each page supplies its own title and description through `lib/site.ts`, including canonical URLs, Open Graph and Twitter cards.
 - `app/page.tsx` includes WebSite JSON-LD. Sample listings and ratings are not advertised as real structured data.
+- Company and policy pages include BreadcrumbList JSON-LD matching their visible navigation.
+- Category cards and footer category links have crawlable URLs. Normal homepage clicks filter in place; opening a category URL applies that filter after hydration. These query variants keep the homepage canonical.
+- All section content is visible in the initial HTML without waiting for JavaScript or scroll animations. Removing the reveal animation also removes Framer Motion from the browser bundle.
+- Pages serve compressed WebP photos; the original JPEGs remain as source assets. Font declarations are bundled in `app/globals.css` to avoid a nested stylesheet request, and the body/hero font files are preloaded in the root layout. If fonts change, update these declarations and preloads together.
 - `app/sitemap.ts` exports `/sitemap.xml` with all six public pages; `app/robots.ts` exports `/robots.txt` allowing crawling and pointing to that sitemap. Modification dates are omitted until actual content-change dates are maintained.
 - Use `https://zerotham.com` as the production origin. Remove an old `NEXT_PUBLIC_SITE_URL=https://zerotham.vercel.app` environment override or change it to `https://zerotham.com` before building. Deploy, then submit `https://zerotham.com/sitemap.xml` in Search Console. Verify each domain separately with its own Google-issued DNS token if adding both as Domain properties.
 - The supplied token is included as an HTML verification meta tag with content `3c1OVTKgf1R3UJqn7jPyrhzKLr8McLN97dGtFscQhAM`. For a Search Console URL-prefix property, use the HTML tag verification method and confirm the token matches the one Google issued for that method.
